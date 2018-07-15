@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+  		delete window.module;
+	</script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
+	<script src='https://code.jquery.com/jquery-1.12.0.min.js'></script>
+    <style>
+
+        html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Cinzel';
+        -webkit-transition: all 400ms;
+        }
+
+        table {
+			border-collapse: collapse;
+		    width: 100%;
+		    position: relative;
+		    top: 4%;
+		    font-size: 1.2vw;
+        }
+		th {
+            border: 0.1vw solid black;
+            text-align: center;
+            padding: 0.8%;
+        }
+
+        td {
+            border: 0.1vw solid #dddddd;
+            text-align: center;
+            padding: 0.8%;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .Table_Name {
+			height: 10%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 3.5vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bolder;
+		    position: relative;
+		    width: 50%;
+		    top: 0%;
+		    right: 0%;
+		    display: inline-block;
+		    padding: 2%;
+		    background-color: lightgray;
+        }
+
+        .Table_Description{
+			color: black;
+		    background-color: white;
+		    border: 0.1vw solid red;
+		    font-family: 'Cinzel';
+		    font-size: 0.8vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    width: 40%;
+		    height: 10%;
+		    left: 1%;
+		    padding: 2%;
+		    display: inline-block;
+		    cursor: pointer;
+		    -webkit-transition: all 400ms;	
+        }
+
+        .Data_Input_Button{
+			color: black;
+		    background-color: darkgray;
+		    font-family: 'Cinzel';
+		    font-size: 1.3vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 23%;
+		    left: 1%;
+		    padding: 2%;
+		    display: inline-block;
+		    cursor: pointer;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Refresh_Table_Button{
+		    color: black;
+		    background-color: darkgray;
+		    font-family: 'Cinzel';
+		    font-size: 1.3vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 23%;
+		    left: 3%;
+		    padding: 2%;
+		    display: inline-block;
+		    cursor: pointer;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Filter_Table_Button{
+		    color: black;
+		    background-color: darkgray;
+		    font-family: 'Cinzel';
+		    font-size: 1.3vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 23%;
+		    left: 5%;
+		    padding: 2%;
+		    display: inline-block;
+		    cursor: pointer;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Clear_Table_Button{
+		    background-color: darkgray;
+		    font-family: 'Cinzel';
+		    font-size: 1.3vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 23%;
+		    left: 7%;
+		    padding: 2%;
+		    display: inline-block;
+		    cursor: pointer;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Export_Table_Button{
+		    background-color: darkgray;
+		    font-family: 'Cinzel';
+		    font-size: 1.3vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 23%;
+		    left: 9%;
+		    padding: 2%;
+		    display: inline-block;
+		    cursor: pointer;
+		    -webkit-transition: all 400ms;
+        }
+
+        .ChooseNew_Table_Button{
+		    color: black;
+		    background-color: darkgray;
+		    font-family: 'Cinzel';
+		    font-size: 1.3vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 23%;
+		    left: 11%;
+		    padding: 2%;
+		    display: inline-block;
+		    cursor: pointer;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Data_Input_Button:hover, .Refresh_Table_Button:hover, .Export_Table_Button:hover, .ChooseNew_Table_Button:hover, .Filter_Table_Button:hover, .Clear_Table_Button:hover{
+        	background-color: black;
+        	color: white;
+        	-webkit-transition: all 400ms;
+        }
+
+        .Input_Main_Container{
+        	position: fixed;
+		    top: -120%;
+		    left: 39%;
+		    border: 1vw solid black;
+		    background-color: black;
+		    color: white;
+		    width: 18%;
+        }
+
+        .Input_Field{
+			width: 93%;
+		    height: 10%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    float: left;
+		    display: inline-block;
+		    margin: 2%;
+		    -webkit-transition: all 400ms;
+        }
+
+        #GENDER_ID{
+			width: 94%;
+		    height: 10%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+			text-indent: 37%;
+		    font-weight: bold;
+		    position: relative;
+		    float: left;
+		    display: inline-block;
+		    margin: 2%;
+		    -webkit-transition: all 400ms;
+        }
+
+        #DISEASE_ID{
+			width: 94%;
+		    height: 10%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+		    font-weight: bold;
+		    position: relative;
+		    float: left;
+		    display: inline-block;
+		    margin: 2%;
+		    -webkit-transition: all 400ms;
+        }
+
+        .meta_Data_class{
+        	display: none;
+        }
+
+        .Enter_Data{
+		    width: 50%;
+		    height: 10%;
+		    color: black;
+		    background-color: darkgray;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    float: left;
+		    display: inline-block;
+		    margin: 3%;
+		    margin-left: 24%;
+		    cursor: pointer;
+		   -webkit-transition: all 400ms;
+        }
+
+        .Cancel_Data{
+		    width: 50%;
+		    height: 10%;
+		    color: black;
+		    background-color: darkgray;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    float: left;
+		    display: inline-block;
+		    margin: 1%;
+		    margin-left: 24%;
+		    cursor: pointer;
+		   -webkit-transition: all 400ms;
+        }
+
+        .Enter_Data:hover, .Cancel_Data:hover{
+        	background-color: black;
+        	color: white;
+        }
+
+        .Export_Button_HelpToolTip{
+			color: black;
+		    background-color: lightgray;
+		    border: 0.2vw solid black;
+		    font-family: sans-serif;
+		    font-size: 1.8vw;
+		    vertical-align: middle;
+		    position: fixed;
+		    width: 60%;
+		    top: 40%;
+		    left: 20%;
+		    padding: 2%;
+		    display: none;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Import_Excel_Form{
+			color: black;
+		    background-color: lightgray;
+		    border: 0.2vw solid black;
+		    font-family: sans-serif;
+		    font-size: 1.8vw;
+		    vertical-align: middle;
+		    position: fixed;
+		    width: 22%;
+		    top: -70%;
+		    left: 37%;
+		    padding: 2%;
+		    padding-bottom: 1%;
+		    display: inline-block;
+		    -webkit-transition: all 400ms;
+        }
+
+        #Cancel_Import_DIV{
+		    width: 100%;
+		    color: white;
+		    background-color: black;
+		    font-family: Arial;
+		    font-size: 2vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    border: 0.1vw solid black;
+		    cursor: pointer;
+		    position: relative;
+		    display: inline-block;
+		    cursor: pointer;
+		    margin-top: 5%;
+		    padding: 1%;
+		    -webkit-transition: all 400ms;
+        }
+
+        .meta_import_class{
+        	display: none;
+        }
+
+        .RecomMasterCont{
+		    color: black;
+		    background-color: lightgray;
+		    border: 0.2vw solid black;
+		    font-family: sans-serif;
+		    font-size: 1.8vw;
+		    vertical-align: middle;
+		    position: absolute;
+		    width: 96%;
+		    height: 80%;
+		    top: -100%;
+		    left: 2%;
+		    display: inline-block;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Recomm_Heading{
+        	margin-top: 2%;
+		    height: 10%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 3.5vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bolder;
+		    position: relative;
+		    width: 50%;
+		    top: 5%;
+		    right: 3%;
+		    display: inline-block;
+        }
+
+        .OutputRecom_Reading{
+        	display: none;
+		    position: relative;
+		    font-family: 'Cinzel';
+		    width: 90%;
+		    height: 85%;
+		    top: 6%;
+		    left: 5%;
+        }
+
+        .Line{
+		    width: 60%;
+		    height: 5%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 2vw;
+		    text-align: left;
+		    vertical-align: middle;
+		    position: relative;
+		    padding-left: 1%;
+		    float: left;
+		    display: inline-block;
+		    margin-top: 1%;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Recom_InputForm{
+        	display: inline-block;
+		    position: relative;
+		    font-family: 'Cinzel';
+		    width: 90%;
+		    height: 85%;
+		    top: 6%;
+		    left: 5%;
+        }
+
+        .RecInputField_Cont{
+		    width: 50%;
+		    height: 70%;
+		    position: relative;
+		    display: inline-block;
+		    float: right;
+		    margin-right: 33%;
+        }
+
+        .RecInputField{
+			border-right: 0.1vw solid black;
+			border-left: 0.1vw solid black;
+			border-top: 0.1vw solid black;
+			border-bottom: 0.1vw solid red;
+			border-radius: 2%;
+		    width: 98%;
+		    height: 10%;
+		    background-color: white;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1vw;
+		    text-align: left;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    padding-left: 1%;
+		    float: right;
+		    display: inline-block;
+		    margin-top: 1.5%;
+		    -webkit-transition: all 400ms;
+        }
+
+        #Recom_GenderSelect, #Recom_DiseaseSelect{
+			border-right: 0.1vw solid black;
+			border-left: 0.1vw solid black;
+			border-top: 0.1vw solid black;
+			border-bottom: 0.1vw solid red;
+			border-radius: 0%;
+		    width: 99.5%;
+		    height: 10%;
+		    background-color: white;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1vw;
+		    text-align: left;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    padding-left: 1%;
+		    float: right;
+		    display: inline-block;
+		    margin-top: 1%;
+		    -webkit-transition: all 400ms;
+        }
+
+        .Recom_Submit_FormButton{
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    width: 20%;
+		    height: 10%;
+		    border: 0.1vw solid red;
+		    background-color: black;
+		    font-size: 1vw;
+		    color: white;
+		    top: 66%;
+		    right: 70%;
+		    cursor: pointer;
+		    position: absolute;
+		    font-family: 'Cinzel';
+        }
+
+        .Recom_Submit_FormButton:hover{
+        	border: 0.1vw solid white;
+        }
+
+        .Span_Cont{
+        	width: 17%;
+        	height: 70%;
+        	position: relative;
+        	display: inline-block;
+        	float: left;
+        }
+
+        .RecomLabels{
+		    width: 100%;
+		    height: 10%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1.3vw;
+		    text-align: left;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    padding-left: 1%;
+		    float: left;
+		    display: inline-block;
+		    margin-top: 5.5%;
+		    -webkit-transition: all 400ms;
+        }
+
+        #CrossRecom_Button, #CrossRecomOutput_Button{
+		    position: absolute;
+		    top: -14%;
+		    left: 103%;
+		    display: inline-block;
+		    cursor: pointer;
+		    -webkit-transition: all 400ms;
+        }
+
+
+
+        #CrossRecom_Button:hover, #CrossRecomOutput_Button:hover{
+        	color: red;
+        	-webkit-transition: all 400ms;
+        }
+
+        #meta_disease_data, #meta_gender_data{
+        	display: none;
+        }
+
+    </style>
+
+    <title>Patient Nutrition - {{TableName}}</title>
+
+</head>
+    <body>
+
+        <h1 class="Table_Name" id="Table_Name_ID">{{TableName}}</h1>
+
+        <div class="Table_Description">
+An example table rendered in a web browser using HTML.
+A table is an arrangement of data in rows and columns, or possibly in a more complex structure. Tables are widely used in communication, research, and data analysis. Tables appear in print media, handwritten notes, computer software, architectural ornamentation, traffic signs, and many other places.</div>
+
+        <br>
+
+        <div class="Data_Input_Button" id="Data_Input_Button_ID">Enter Data</div>
+        <div class="Refresh_Table_Button">Refresh Table</div>
+        <div class="Filter_Table_Button">Recommendation</div>
+        <div class="Clear_Table_Button">Clear Table</div>
+        <div class="Export_Table_Button">Import</div>
+        <div class="ChooseNew_Table_Button">Choose Another Table</div>
+
+    <table id="myTable"></table>
+
+    <div class="Input_Main_Container" id="Input_Main_Container_ID">
+
+    	<form class="form_input" id="form_input_id" action="/signUpUser" method="post" role="form">
+
+    		<input type="text" class="meta_Data_class" id="meta_Data_ID" name="meta_Data">
+
+    	</form>
+
+
+    </div>
+
+    <div class="Export_Button_HelpToolTip" id="Export_Button_HelpToolTip_ID">Upload the Excel file you want to import in .xlsx format. Make sure it has the correct number of rows and columns. There is no need to provide headings. Those will be automatically detected. Make sure the sheet name is also 'Sheet1' Having done so, then and only then press the submit button.</div>
+
+    <form class="Import_Excel_Form" action = "/uploader" method="post" enctype="multipart/form-data">
+	 	<div>
+		    <label for="Excel_File">Choose Excel file to upload</label>
+		    <input type="file" id="Excel_File_Input_ID" name="Excel_File"
+		          accept=".xlsx">
+		    <input type="text" class="meta_import_class" id="meta_import_class" name="meta_import">
+	  	</div>
+			<input type = "submit"/>
+
+	  	<div id="Cancel_Import_DIV">Cancel</div>
+	</form>
+
+	<div class="RecomMasterCont">
+		<div class="Recomm_Heading">Recommendation</div>
+
+		<form class="Recom_InputForm" id="Recom_InputForm_id" action="/RecomInput_Response" method="post" role="form">
+
+			<div class="RecInputField_Cont">
+				<input type="text" name="PatientName" class="RecInputField" id="PatientName" placeholder="Enter patient's name"> 
+				<select id="Recom_GenderSelect">
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+				<input type="text" name="PatientAge" class="RecInputField" id="PatientAge" placeholder="Enter patient's age">
+				<input type="text" name="PatientWeight" class="RecInputField" id="PatientWeight" placeholder="Enter patient's weight">
+				<input type="text" name="PatientHeight" class="RecInputField" id="PatientHeight" placeholder="Enter patient's height">
+				<input type="text" name="meta_disease_data" id="meta_disease_data">
+				<input type="text" name="meta_gender_data" id="meta_gender_data">
+				<select id="Recom_DiseaseSelect">
+					<option value="Cardiovascular">Cardiovascular</option>
+					<option value="Hypertension">Hypertension</option>
+					<option value="DiabetesType1">DiabetesType1</option>
+					<option value="DiabetesType2">DiabetesType2</option>
+					<option value="Kwashiorkor">Kwashiorkor</option>
+					<option value="KidneyDisease_Stage1_2">KidneyDisease_Stage1_2</option>
+					<option value="KidneyDisease_Stage2_4">KidneyDisease_Stage2_4</option>
+				</select>
+
+
+			</div>
+
+
+			<div class="Span_Cont">
+				<span class="RecomLabels">Patient Name:</span>
+				<span class="RecomLabels">Patient Gender:</span>
+				<span class="RecomLabels">Patient Age:</span>
+				<span class="RecomLabels">Patient Weight:</span>
+				<span class="RecomLabels">Patient Height:</span>
+				<span class="RecomLabels">Patient Diseases:</span>
+					
+			</div>
+
+			<div class="Recom_Submit_FormButton">Submit</div>
+			<i class="fas fa-times" id="CrossRecom_Button"></i>
+
+		</form>
+
+		<div class="OutputRecom_Reading">
+			<span id="Line1" class="Line">Patient Name: </span>	
+			<span id="Line2" class="Line">Patient Age: </span>	
+			<span id="Line3" class="Line">Patient Weight: </span>	
+			<span id="Line4" class="Line">Patient Height: </span>	
+			<span id="Line5" class="Line">Patient Disease Restriction: </span>	
+			<span id="Line6" class="Line">Patient Recommended Protein Intake: </span>	
+			<span id="Line7" class="Line">Patient Recommended Fat Intake: </span>	
+			<span id="Line8" class="Line">Patient Recommended Carb Intake: </span>	
+
+			<i class="fas fa-times" id="CrossRecomOutput_Button"></i>
+		</div>
+
+	</div>
+
+        <script>
+
+        var global_heading_array_record = [];
+        var global_Number_of_Rows = 0;
+        Main();
+
+        function Main() {
+
+        	Backend_Python_Heading_String = '{{CraftedHeading_String}}';
+
+        	table_Heading_Array = Backend_Python_Heading_String.split(';');
+
+        	table_Heading_Array.splice(-1,1);
+
+        	global_heading_array_record = table_Heading_Array;
+
+        	// table_Heading_Array = ['Age', 'Weight', 'Food', 'Exercise', 'lol'];
+
+	    	// table_data = [[1,12,4,4,1],[23,45,6,78,1],[1,23,45,6,1],[1,23,45,6,1]];
+
+	    	Backend_Python_Data_String = '{{CraftedFinalData_String}}';
+
+	    	final_table_data_array = [];
+
+	    	table_data_Array = Backend_Python_Data_String.split(';');
+
+	    	table_data_Array.splice(-1,1);
+
+			for (var z = 0; z < table_data_Array.length; z++) {
+				Row_Array = table_data_Array[z].split(',');
+				Row_Array.splice(-1,1);
+				final_table_data_array.push(Row_Array);
+				}
+
+	        CreateTable_Headings(table_Heading_Array);
+			CreateTable_Data(final_table_data_array);
+			CreateInput_Fields(table_Heading_Array);
+
+			//input the table name into meta import input field
+			the_table_name = document.getElementById("Table_Name_ID").innerHTML;
+			document.getElementById("meta_import_class").value = the_table_name;
+        }
+
+        function CreateTable_Headings(Heading_Array) {
+            table_headings = Heading_Array ;
+            var x = document.createElement("TR");
+            Unique_ID_For_TR = 'H' + String(1);
+            x.setAttribute("id", Unique_ID_For_TR);
+            document.getElementById("myTable").appendChild(x);
+                for (var z = 0; z < table_headings.length; z++) {
+                    var y = document.createElement("TH");
+                    var t = document.createTextNode(String(table_headings[z]));
+                    y.appendChild(t);
+                    Current_TH_ID = 'H' + String(1);
+                    document.getElementById(Current_TH_ID).appendChild(y);
+                
+                }
+        }
+
+        function CreateTable_Data(table_data) {
+
+            for (var i=0;i<table_data.length; i++) {
+            var x = document.createElement("TR");
+            global_Number_of_Rows = global_Number_of_Rows + 1;
+            Unique_ID_For_TR = 'R' + String(i);
+            x.setAttribute("id", Unique_ID_For_TR);
+            document.getElementById("myTable").appendChild(x);
+                for (var z = 0; z < table_data[i].length; z++) {
+                    var y = document.createElement("TD");
+                    var t = document.createTextNode(String(table_data[i][z]));
+                    y.appendChild(t);
+                    Current_TR_ID = 'R' + String(i);
+                    document.getElementById(Current_TR_ID).appendChild(y);
+                
+                }
+            }	
+        }
+
+        function CreateInput_Fields(Heading_Array){
+
+        	for (var z = 0; z < Heading_Array.length; z++) {
+
+        		if (String(Heading_Array[z])=='DISEASE') {
+				   var select = document.createElement( 'select' );
+				   Select_ID = String(Heading_Array[z]) + '_ID';
+				   select.setAttribute("id", Select_ID);
+				   var option;
+				   var inputdata = 'Cardiovascular||Hypertension||DiabetesType1||DiabetesType2||Kwashiorkor||KidneyDisease_Stage1_2||KidneyDisease_Stage2_4';
+
+				    inputdata.split( '||' ).forEach(function( item ) {
+
+				        option = document.createElement( 'option' );
+
+				        option.value = option.textContent =        item;
+
+				        select.appendChild( option );
+				        document.getElementById("form_input_id").appendChild(select);
+        			});
+        		}
+
+
+        		else if (String(Heading_Array[z])=='GENDER'){
+				   var select = document.createElement( 'select' );
+				   Select_ID = String(Heading_Array[z]) + '_ID';
+				   select.setAttribute("id", Select_ID);
+				   var option;
+				   var inputdata = 'Male||Female';
+
+				    inputdata.split( '||' ).forEach(function( item ) {
+
+				        option = document.createElement( 'option' );
+
+				        option.value = option.textContent =        item;
+
+				        select.appendChild( option );
+				        document.getElementById("form_input_id").appendChild(select);
+				    });
+        		}
+
+        		else {
+        			//if the field to be made is not gender then make simple text input field
+					var x = document.createElement("INPUT");
+					x.setAttribute("required", "");
+					x.setAttribute("type", "text");
+					x.setAttribute("id", String(Heading_Array[z]));
+					x.setAttribute("class", "Input_Field");
+					x.setAttribute("name", String(Heading_Array[z]));
+					x.setAttribute("placeholder", String(Heading_Array[z]));
+
+					document.getElementById("form_input_id").appendChild(x);
+        		}
+
+			}
+			//Create the enter div
+			var y = document.createElement("div");
+			y.setAttribute("class", "Enter_Data");
+			y.setAttribute("type", "button");
+            var t = document.createTextNode('Enter');
+            y.appendChild(t);
+            document.getElementById("form_input_id").appendChild(y);
+
+            //Create the cancel div
+            var c = document.createElement("div");
+			c.setAttribute("class", "Cancel_Data");
+			c.setAttribute("id", "Cancel_Data_ID");
+            var e = document.createTextNode('Cancel');
+            c.appendChild(e);
+            document.getElementById("form_input_id").appendChild(c);
+
+		}
+
+		function Enter_metaData_To_Field(){
+			crafted_String = '';
+			for (var z = 0; z < global_heading_array_record.length; z++) {
+				if (String(global_heading_array_record[z])=="GENDER") {
+						var x = document.createElement("INPUT");
+						x.setAttribute("required", "");
+						x.setAttribute("type", "text");
+						x.setAttribute("id", "GENDER");
+						x.setAttribute("class", "Input_Field");
+						x.setAttribute("name", "GENDER");
+						x.style.display = "none";
+
+						document.getElementById("form_input_id").appendChild(x);
+
+						var Gender_E = document.getElementById("GENDER_ID");
+						var ChosenGender = Gender_E.options[Gender_E.selectedIndex].text;
+						document.getElementById("GENDER").value = ChosenGender;	
+					}
+
+					else if (String(global_heading_array_record[z])=="DISEASE") {
+						var x = document.createElement("INPUT");
+						x.setAttribute("required", "");
+						x.setAttribute("type", "text");
+						x.setAttribute("id", "DISEASE");
+						x.setAttribute("class", "Input_Field");
+						x.setAttribute("name", "DISEASE");
+						x.style.display = "none";
+
+						document.getElementById("form_input_id").appendChild(x);
+
+						var Disease_E = document.getElementById("DISEASE_ID");
+						var ChosenDisease = Disease_E.options[Disease_E.selectedIndex].text;
+						document.getElementById("DISEASE").value = ChosenDisease;	
+					}
+
+				crafted_String = crafted_String + String(global_heading_array_record[z]) + ',';
+
+				}
+
+			the_table_name = document.getElementById("Table_Name_ID").innerHTML;
+			crafted_String = crafted_String + String(the_table_name);
+			document.getElementById("meta_Data_ID").value = crafted_String;
+		}
+
+		jQuery(document).ready(function($) {
+
+			//Animate the input box coming in from the top
+	        $("#Data_Input_Button_ID").click(function() {
+
+	               $( ".Input_Main_Container" ).animate({
+	                    top: "+5%"
+	                  }, 500, function() {
+	                    // Animation complete.
+	                    console.log('animation complete');
+	                });
+	        });
+
+	        //Animate the input box going away
+	        $("#Cancel_Data_ID").click(function() {
+
+	               $( ".Input_Main_Container" ).animate({
+	                    top: "-120%"
+	                  }, 500, function() {
+	                    // Animation complete.
+	                    console.log('animation complete');
+	                });
+	        });
+
+			//Animate the recom box coming in from the top
+	        $(".Filter_Table_Button").click(function() {
+
+	               $( ".RecomMasterCont" ).animate({
+	                    top: "+10%"
+	                  }, 200, function() {
+	                    // Animation complete.
+	                    console.log('animation complete');
+	                });
+	        });
+
+	        //Animate the recom box going away
+	        $("#CrossRecom_Button").click(function() {
+
+	               $( ".RecomMasterCont" ).animate({
+	                    top: "-100%"
+	                  }, 200, function() {
+	                    // Animation complete.
+	                    console.log('animation complete');
+	                });
+	        });
+
+	        //Animate the recom with output information box going away
+	        $("#CrossRecomOutput_Button").click(function() {
+
+	               $( ".RecomMasterCont" ).animate({
+	                    top: "-100%"
+	                  }, 50, function() {
+	                    // Animation complete.
+	                    console.log('animation complete');
+	                });
+
+	               $(".Recom_InputForm").fadeIn("slow");
+	               $(".OutputRecom_Reading").fadeOut("fast");
+	        });
+
+			//Animate the import file box coming in from the top
+	        $(".Export_Table_Button").click(function() {
+
+	               $( ".Import_Excel_Form" ).animate({
+	                    top: "+10%"
+	                  }, 200, function() {
+	                    // Animation complete.
+	                    console.log('animation complete');
+	                });
+	        });
+
+	        //Animate the import file box going away
+	        $("#Cancel_Import_DIV").click(function() {
+
+	               $( ".Import_Excel_Form" ).animate({
+	                    top: "-70%"
+	                  }, 200, function() {
+	                    // Animation complete.
+	                    console.log('animation complete');
+	                });
+	        });
+
+	        $(".ChooseNew_Table_Button").click(function() {
+
+	        	IP_ADDRESS = '{{IP_Address}}';
+				PortNum = '{{Port_Number}}';
+				window.location.href = 'http://' + IP_ADDRESS + ':' + PortNum + '/' + 'Choose';
+	        });
+
+	        $(".Refresh_Table_Button").click(function() {
+
+				IP_ADDRESS = '{{IP_Address}}';
+				PortNum = '{{Port_Number}}';
+				the_table_name = document.getElementById("Table_Name_ID").innerHTML;
+				window.location.href = 'http://' + IP_ADDRESS + ':' + PortNum + '/' + the_table_name;
+	        });
+
+	        $(".Clear_Table_Button").click(function() {
+
+				IP_ADDRESS = '{{IP_Address}}';
+				PortNum = '{{Port_Number}}';
+				the_table_name = document.getElementById("Table_Name_ID").innerHTML;
+				window.location.href = 'http://' + IP_ADDRESS + ':' + PortNum + '/' + 'Clear/' + the_table_name;
+	        	
+	        });
+
+	        //Ajax input data section
+			$('.Enter_Data').click(function() {
+				Enter_metaData_To_Field();
+		        $.ajax({
+		            url: '/signUpUser',
+		            data: $('form').serialize(),
+		            type: 'POST',
+		            success: function(response) {
+		                console.log(String(response));
+		                Rid_SquareBrackets = String(response).slice(1, -1);
+		                comma_Split = Rid_SquareBrackets.split(',');
+		                console.log(comma_Split);
+
+		                //Now add in this new row to the table through javascript
+		                var x = document.createElement("TR");
+			            Unique_ID_For_TR = 'R' + global_Number_of_Rows;
+			            x.setAttribute("id", Unique_ID_For_TR);
+			            document.getElementById("myTable").appendChild(x);
+			                for (var z = 0; z < comma_Split.length; z++) {
+			                    var y = document.createElement("TD");
+			                    var block_to_be_added = String(comma_Split[z]);
+			                    var t = document.createTextNode(block_to_be_added);
+			                    y.appendChild(t);
+			                    Current_TR_ID = 'R' + global_Number_of_Rows;
+			                    document.getElementById(Current_TR_ID).appendChild(y);
+			               
+			                }
+			                global_Number_of_Rows = global_Number_of_Rows + 1;
+		            },
+		            error: function(error) {
+		                console.log(error);
+		            }
+		        });
+		    });
+
+	        //Ajax recom input data section
+			$('.Recom_Submit_FormButton').click(function() {
+
+				$(".Recom_InputForm").fadeOut("fast");
+
+				//Fill in meta data first from drop down menu
+				var Gender_E = document.getElementById("Recom_GenderSelect");
+				var ChosenGender = Gender_E.options[Gender_E.selectedIndex].text;
+				document.getElementById("meta_gender_data").value = ChosenGender;
+				console.log(ChosenGender);
+
+				var Disease_E = document.getElementById("Recom_DiseaseSelect");
+				var ChosenDisease = Disease_E.options[Disease_E.selectedIndex].text;
+				document.getElementById("meta_disease_data").value = ChosenDisease;
+				console.log(ChosenDisease);
+
+		        $.ajax({
+		            url: '/RecomInput_Response',
+		            data: $('form').serialize(),
+		            type: 'POST',
+		            success: function(response) {
+		            	//this is json dump response from backend
+
+		                console.log(response);
+		               	Rid_SquareBrackets = String(response).slice(1, -1);
+		                FinalArray = Rid_SquareBrackets.split(',');
+		                Protein = FinalArray[6];
+		                Fat =  FinalArray[7];
+		                Carb = FinalArray[8];
+
+		                PatName = FinalArray[0];
+		                PatGender = FinalArray[1];
+		                PatAge = FinalArray[2];
+		                PatWeight = FinalArray[3];
+		                PatHeight = FinalArray[4];
+		                PatDisease = FinalArray[5];
+
+		                document.getElementById("Line1").innerHTML = '<b>Patient Name: </b>' + String(PatName);
+		                document.getElementById("Line2").innerHTML = '<b>Patient Age: </b>' + String(PatAge);
+		                document.getElementById("Line3").innerHTML = '<b>Patient Weight: </b>' + String(PatWeight);
+		                document.getElementById("Line4").innerHTML = '<b>Patient Height: </b>' + String(PatHeight);
+		                document.getElementById("Line5").innerHTML = '<b>Patient Disease Restriction: </b>' + String(PatDisease);
+		                document.getElementById("Line6").innerHTML = '<b>Patient Recommended Protein Intake: </b>' + String(Protein) + 'gms';
+		                document.getElementById("Line7").innerHTML = '<b>Patient Recommended Fats Intake: </b>' + String(Fat) + 'gms';
+		                document.getElementById("Line8").innerHTML = '<b>Patient Recommended Carb Intake: </b>' + String(Carb) + 'gms';
+
+		                $(".OutputRecom_Reading").fadeIn("slow");
+
+		                console.log(FinalArray);
+
+		                FinalArray.splice(-1, 1);
+		                FinalArray.splice(-1, 1);
+		                FinalArray.splice(-1, 1);
+
+		                console.log(FinalArray);
+
+
+		                //Now add in this new row to the table through javascript
+		                var x = document.createElement("TR");
+			            Unique_ID_For_TR = 'R' + global_Number_of_Rows;
+			            x.setAttribute("id", Unique_ID_For_TR);
+			            document.getElementById("myTable").appendChild(x);
+			                for (var z = 0; z < FinalArray.length; z++) {
+			                    var y = document.createElement("TD");
+			                    var block_to_be_added = String(FinalArray[z]);
+			                    var t = document.createTextNode(block_to_be_added);
+			                    y.appendChild(t);
+			                    Current_TR_ID = 'R' + global_Number_of_Rows;
+			                    document.getElementById(Current_TR_ID).appendChild(y);
+			               
+			                }
+			                global_Number_of_Rows = global_Number_of_Rows + 1;
+		            },
+		            error: function(error) {
+		                console.log(error);
+		            }
+		        });
+		    });
+
+		    //Mouseover and mouseout export help tool tip
+			$( ".Export_Table_Button" ).mouseover(function() {
+			    //set the tooltip display to inline-block
+			    document.getElementById("Export_Button_HelpToolTip_ID").style.display = "inline-block";
+			    	$( "#Export_Button_HelpToolTip_ID" ).animate({
+	                    display: "inline-block"
+	                  }, 1000, function() {
+	                    // Animation complete.
+	                    console.log('animation complete');
+	                });
+			  })
+			  .mouseout(function() {
+			  	//set the tooltip display to none
+			    document.getElementById("Export_Button_HelpToolTip_ID").style.display = "none";
+			  });
+		});
+        </script>
+
+    </body>
+</html>
+
+
+
+

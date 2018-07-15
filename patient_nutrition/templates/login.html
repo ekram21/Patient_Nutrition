@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script>
+  		delete window.module;
+	</script>
+
+	<link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
+	<script src='https://code.jquery.com/jquery-1.12.0.min.js'></script>
+	<style>
+		
+		html, body {
+	        height: 100%;
+	        margin: 0;
+	        padding: 0;
+	        background-color: black;
+        }
+
+        .Login_Main_Container{
+		    position: relative;
+		    top: 18%;
+		    left: 25%;
+		    border: 1px solid black;
+		    background-color: white;
+		    width: 50%;
+		    height: 65%;
+        }
+
+        .Main_Title{
+			width: 100%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 3.5vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 0%;
+		    right: 0%;
+		    padding-top: 10%; 
+		    display: inline-block;
+        }
+
+        #UserName{
+		    width: 80%;
+		    height: 10%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+		    border: 1px solid black;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 10%;
+		    left: 10%;
+		    display: inline-block;
+		   -webkit-transition: all 400ms;
+          -moz-transition: all 400ms;
+          -ms-transition: all 400ms;
+          -o-transition: all 400ms;
+        }
+
+        #Password{
+		    width: 80%;
+		    height: 10%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+		    border: 1px solid black;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 15%;
+		    left: 10%;
+		    display: inline-block;
+		   -webkit-transition: all 400ms;
+          -moz-transition: all 400ms;
+          -ms-transition: all 400ms;
+          -o-transition: all 400ms;
+        }
+
+        #Password:hover, #Username:hover {
+        	border: 1px solid red;
+        }
+
+        .Enter_Login{
+    		width: 45%;
+		    height: 9%;
+		    color: white;
+		    background-color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+		    border: 1px solid red;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 23%;
+		    left: 28%;
+		    padding-top: 3%;
+		    display: inline-block;
+		    cursor: pointer;
+		   -webkit-transition: all 400ms;
+          -moz-transition: all 400ms;
+          -ms-transition: all 400ms;
+          -o-transition: all 400ms;
+        }
+
+        .Enter_Login:hover {
+        	border: 1px solid white;
+        }
+
+	</style>
+	<title>Patient Nutrition - Login</title>
+</head>
+<body>
+
+	<div class="Login_Main_Container">
+
+		<h1 class="Main_Title">Patient Nutrition</h1>
+
+		<input type="text" name="UserName" id="UserName" placeholder="Username"/>
+
+		<input type="password" name="Password" id="Password" placeholder="Password"/>
+
+		<div class="Enter_Login" id="Enter_Login_ID">Enter</div>
+		
+
+	</div>
+
+	<script>
+		jQuery(document).ready(function($) {
+
+			//carry out login check
+	        $("#Enter_Login_ID").click(function() {
+
+				IP_ADDRESS = '{{IP_Address}}';
+				PortNum = '{{Port_Number}}';
+
+	        	var user_coded_in = $('#UserName').val();
+	        	var pass_coded_in = $('#Password').val();
+
+	        	if ((user_coded_in=='admin') && (pass_coded_in=='admin')) {
+	        		window.location.href = 'http://' + IP_ADDRESS + ':' + PortNum + '/' + 'Choose';
+	        	}
+	        	else {
+	        		alert("Wrong Credentials");
+	        	}
+
+	        });
+
+		});	
+
+
+	</script>
+
+</body>
+</html>

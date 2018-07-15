@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script>
+  		delete window.module;
+	</script>
+
+	<link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
+	<style>
+		
+		html, body {
+	        height: 100%;
+	        margin: 0;
+	        padding: 0;
+	        background-color: black;
+        }
+
+        .Login_Main_Container{
+		    position: absolute;
+		    top: 18%;
+		    left: 25%;
+		    border: 1px solid black;
+		    background-color: white;
+		    width: 50%;
+        }
+
+        .Main_Title{
+			width: 100%;
+		    color: black;
+		    font-family: 'Cinzel';
+		    font-size: 5vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    font-weight: bold;
+		    position: relative;
+		    top: 0%;
+		    right: 0%;
+		    padding-top: 5%;
+		    margin-bottom: 2%;
+		    display: inline-block;
+        }
+
+        .ChooseItem{
+		    width: 90%;
+		    height: 9%;
+		    color: white;
+		    background-color: black;
+		    font-family: 'Cinzel';
+		    font-size: 1.2vw;
+		    text-align: center;
+		    vertical-align: middle;
+		    position: relative;
+		    float: left;
+		    padding: 2%;
+		    display: inline-block;
+		    cursor: pointer;
+		    margin: 3%;
+		    -webkit-transition: all 400ms;
+        }
+
+
+        .ChooseItem:hover {
+        	transform: scaleX(1.05);
+        }
+
+	</style>
+	<title>Patient Nutrition - Choose</title>
+</head>
+<body>
+
+	<div class="Login_Main_Container" id="Cont">
+
+		<h1 class="Main_Title">Tables Available</h1>
+
+	</div>
+
+	<script>
+
+		var Global_Table_Name_Array = [];
+		Main();
+
+		function Main() {
+
+			Backend_Python_Name_String = '{{CraftedName_String}}';
+
+        	table_Name_Array = Backend_Python_Name_String.split(';');
+
+        	table_Name_Array.splice(-1,1);
+
+			//Table_Name_Array = ['NutrientsByAge', 'NutrientsRestriction'];
+			Create_TableTitle_Divs(table_Name_Array);
+		}
+
+		function RelocateWebPage_ToGivenURL(KeyWord){
+			IP_ADDRESS = '{{IP_Address}}';
+			PortNum = '{{Port_Number}}';
+			window.location.href = 'http://' + IP_ADDRESS + ':' + PortNum + '/' + KeyWord;
+		}
+
+
+		function Create_TableTitle_Divs(TableNames_Array){
+
+			Global_Table_Name_Array = TableNames_Array;
+
+        	for (var z = 0; z < TableNames_Array.length; z++) {
+				var x = document.createElement("div");
+				x.setAttribute("class", "ChooseItem");
+				x.setAttribute("onclick", "RelocateWebPage_ToGivenURL(Global_Table_Name_Array[" + String(z) + "])");
+            	var t = document.createTextNode(TableNames_Array[z]);
+            	x.appendChild(t);
+
+				document.getElementById("Cont").appendChild(x);
+
+			}
+		}
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
